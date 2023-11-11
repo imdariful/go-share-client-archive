@@ -30,7 +30,10 @@ export class SingupPageComponent {
     try {
       if (this.registrationForm.valid) {
         const userData = this.registrationForm.value;
+
         const res = await this.auth.signUp(userData);
+        console.log(res);
+
         if (res.token) {
           this.registrationForm.reset();
           this.location.historyGo(-2);
