@@ -21,7 +21,7 @@ export class AuthService {
       const res = await axios.post(`${this.url}signup`, userData, this.config);
       return res.data;
     } catch (error: any) {
-      return error;
+      throw new Error(`Failed to sign up: ${error?.message}`);
     }
   };
 
@@ -30,7 +30,7 @@ export class AuthService {
       const res = await axios.post(`${this.url}signin`, userData, this.config);
       return res.data;
     } catch (error: any) {
-      return error;
+      throw new Error(`Failed to sign in: ${error?.message}`);
     }
   };
 
@@ -44,17 +44,16 @@ export class AuthService {
       const res = await axios.get(`${this.url}profile`, this.config);
       return res.data;
     } catch (error: any) {
-      return error;
+      throw new Error(`Failed to get profile: ${error?.message}`);
     }
   };
 
   getDriver = async (id: string): Promise<Profile> => {
     try {
       const res = await axios.get(`${this.url}driver/${id}`, this.config);
-      // console.log(res)
       return res.data;
     } catch (error: any) {
-      return error;
+      throw new Error(`Failed to sign in: ${error?.message}`);
     }
   };
 
