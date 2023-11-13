@@ -35,6 +35,7 @@ export class LoginPageComponent {
       }
     } catch (error: any) {
       this.error = error.message;
+      throw new Error(`Failed to get user data: ${error.message}`);
     }
   }
 }

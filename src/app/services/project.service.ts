@@ -19,7 +19,7 @@ export class ProjectService {
       const res = await axios.post(`${this.url}`, data, this.config);
       return res.data;
     } catch (error: any) {
-      return error;
+      throw new Error(`Failed to booked: ${error?.message}`);
     }
   };
 

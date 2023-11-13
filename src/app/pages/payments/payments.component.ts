@@ -1,5 +1,6 @@
 import { Component, SimpleChange, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
+import { throwError } from 'rxjs';
 import { User } from 'src/app/interfaces/auth';
 import { AuthService } from 'src/app/services/auth.service';
 import { PaymentService } from 'src/app/services/payment.service';
@@ -38,6 +39,7 @@ export class PaymentsComponent {
       }
     } catch (error: any) {
       this.error = error.message;
+      throw new Error(`Failed to get user data: ${error.message}`);
     }
   }
 }
